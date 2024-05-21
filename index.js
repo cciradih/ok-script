@@ -19,7 +19,8 @@ const client = new Client({
         stream: false,
         keep_alive: -1
       })
-      console.log(result.text())
+      const text = await result.text()
+      console.log(text)
       await fetch('https://ok-api.cciradih.eu.org/ollama/result', { method: 'POST', body: result.json() })
     })
   }
