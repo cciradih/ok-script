@@ -10,16 +10,9 @@ const client = new Client({
   onStompError: () => { },
   onConnect: () => {
     client.subscribe('/topic/chat', async (message) => {
-      const body = {
-        model: 'llama3:8b',
-        messages: JSON.parse(message.body),
-        stream: false,
-        keep_alive: -1
-      }
-      console.log(body)
       const result = await fetch('http://localhost:11434/api/chat', {
         method: 'POST',
-        body: JSON.stringify(body)
+        body: message.body
       })
       const text = await result.text()
       await fetch('https://ok-api.cciradih.eu.org/ollama/result', { method: 'POST', body: text })
