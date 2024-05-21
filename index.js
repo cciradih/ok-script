@@ -17,8 +17,9 @@ const client = new Client({
         keep_alive: -1
       }
       console.log(body)
-      const result = await fetch('http://localhost:11434/api/tags', {
-        method: 'GET'
+      const result = await fetch('http://localhost:11434/api/chat', {
+        method: 'POST',
+        body: JSON.stringify(body)
       })
       const text = await result.text()
       await fetch('https://ok-api.cciradih.eu.org/ollama/result', { method: 'POST', body: text })
