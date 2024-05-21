@@ -10,16 +10,14 @@ const client = new Client({
   onStompError: () => { },
   onConnect: () => {
     client.subscribe('/topic/chat', async (message) => {
-      console.log(message.body)
-      console.log(JSON.parse(message.body))
       const result = await fetch('http://localhost:11434/api/chat', {
         method: 'POST',
         body: {
           model: 'llama3:8b',
           messages: JSON.parse(message.body),
-        },
-        stream: false,
-        keep_alive: -1
+          stream: false,
+          keep_alive: -1
+        }
       })
       const text = await result.text()
       console.log(text)
