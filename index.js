@@ -13,7 +13,7 @@ const client = new Client({
       const result = await fetch('http://localhost:11434/api/chat', {
         method: 'POST',
         body: {
-          model: '',
+          model: 'llama3:8b',
           messages: JSON.parse(message.body),
         },
         stream: false,
