@@ -21,8 +21,8 @@ const client = new Client({
         method: 'POST',
         body: body
       })
-      const json = await result.json()
-      await fetch('https://ok-api.cciradih.eu.org/ollama/result', { method: 'POST', body: json })
+      const text = await result.text()
+      await fetch('https://ok-api.cciradih.eu.org/ollama/result', { method: 'POST', body: text })
     })
   }
 })
