@@ -11,6 +11,7 @@ const client = new Client({
   onConnect: () => {
     client.subscribe('/topic/chat', async (message) => {
       console.log(message.body)
+      console.log(JSON.parse(message.body))
       const result = await fetch('http://localhost:11434/api/chat', {
         method: 'POST',
         body: {
